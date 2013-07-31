@@ -1,3 +1,5 @@
+// Written in the D programming language: http://dlang.org
+
 /**********************************************************************/
 /*  A D port of the RtMidi API. 
     

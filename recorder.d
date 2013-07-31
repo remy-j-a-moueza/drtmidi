@@ -1,3 +1,4 @@
+// Written in the D programming language: http://dlang.org
 import std.stdio; 
 import std.string;
 import std.math;
