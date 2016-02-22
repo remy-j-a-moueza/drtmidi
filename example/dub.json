@@ -1,0 +1,19 @@
+{
+	"name": "drtmidi_example",
+	"description": "A MIDI realtime library example",
+	"authors": [
+		"Rémy J. A. Mouëza",
+	],
+    "homepage": "https://github.com/remy-j-a-moueza/drtmidi",
+	"copyright": "2013-2016 Rémy J. A. Mouëza",
+	"license": "MIT",
+	"targetType": "executable",
+	"targetPath": ".",
+    "targetName": "recorder",
+	"dependencies": {
+        "drtmidi": {"path": ".."}
+    },
+	"sourcePaths": [
+		"."
+	] 
+}

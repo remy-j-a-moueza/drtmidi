@@ -1,0 +1,36 @@
+{
+	"name": "drtmidi",
+	"description": "A MIDI realtime library",
+	"authors": [
+		"Rémy J. A. Mouëza",
+        "Gary P. Scavone"
+	],
+    "homepage": "https://github.com/remy-j-a-moueza/drtmidi",
+	"configurations": [
+		{
+			"name": "lib",
+			"targetType": "library"
+		}
+	],
+	"systemDependencies": "libasound libpthread librtmidi",
+	"targetType": "library",
+	"lflags": [],
+	"copyright": "2013-2016 Rémy J. A. Mouëza, RtMidi: 2003-2014 Gary P. Scavone",
+	"license": "MIT",
+	"libs": [
+		"stdc++",
+		"asound",
+		"pthread",
+        "rtmidi"
+	],
+    "preBuildCommands": [],
+    "excludedSourceFiles": [],
+	"targetPath": "lib",
+	"dependencies": {},
+	"sourcePaths": [
+		"src"
+	], 
+    "subPackages": [
+        "./example/"
+    ]
+}
