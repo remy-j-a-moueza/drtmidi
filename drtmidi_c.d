@@ -1,11 +1,21 @@
 extern (C):
 
-alias void* RtMidiPtr;
-alias void* RtMidiInPtr;
-alias void* RtMidiOutPtr;
+
+
+struct RtMidiWrapper {
+    void*        ptr;
+    bool         ok;
+    const(char)* msg;
+};
+
+alias RtMidiWrapper* RtMidiPtr;
+alias RtMidiWrapper* RtMidiInPtr;
+alias RtMidiWrapper* RtMidiOutPtr;
+
 alias void function (double, const(ubyte)*, void*) RtMidiCCallback;
 
-enum RtMidiApi
+alias  RtMidiApi = int;
+enum : RtMidiApi
 {
     RT_MIDI_API_UNSPECIFIED = 0,   /*!< Search for a working compiled API. */
     RT_MIDI_API_MACOSX_CORE = 1,   /*!< Macintosh OS-X Core Midi API. */
@@ -16,7 +26,8 @@ enum RtMidiApi
     RT_MIDI_API_RTMIDI_DUMMY = 6   /*!< A compilable but non-functional API. */
 }
 
-enum RtMidiErrorType
+alias   RtMidiErrorType  = int;
+enum  : RtMidiErrorType
 {
     RT_ERROR_WARNING = 0,
     RT_ERROR_DEBUG_WARNING = 1,
