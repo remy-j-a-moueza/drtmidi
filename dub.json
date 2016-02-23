@@ -12,16 +12,16 @@
 			"targetType": "library"
 		}
 	],
-	"systemDependencies": "libasound libpthread librtmidi",
+	"systemDependencies": "librtmidi libasound libpthread",
 	"targetType": "library",
 	"lflags": [],
 	"copyright": "2013-2016 Rémy J. A. Mouëza, RtMidi: 2003-2014 Gary P. Scavone",
 	"license": "MIT",
 	"libs": [
+        "rtmidi",
 		"stdc++",
-		"asound",
 		"pthread",
-        "rtmidi"
+		"asound"
 	],
     "preBuildCommands": [],
     "excludedSourceFiles": [],

@@ -142,10 +142,7 @@ class RtMidiIn {
     }
 
     void ignoreTypes (bool sysex, bool time, bool sense) {
-        ptr.rtmidi_in_ignore_types (
-                cast (int) sysex, 
-                cast (int) time, 
-                cast (int) sense); 
+        ptr.rtmidi_in_ignore_types (sysex, time, sense); 
     }
 
     double getMessage (ref ubyte [] msgs) {
