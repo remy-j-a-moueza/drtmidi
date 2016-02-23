@@ -150,8 +150,9 @@ class RtMidiIn {
 
     double getMessage (ref ubyte [] msgs) {
         import core.stdc.stdlib : free; 
-        ubyte** table;
-        double size = ptr.rtmidi_in_get_message (table); 
+        ubyte * table;
+        size_t size;
+        double dt = ptr.rtmidi_in_get_message (&table, &size); 
 
 
         if (! this.ptr.ok) {
@@ -159,13 +160,17 @@ class RtMidiIn {
             throw new RtError (this.ptr.msg.to!string);
         }
 
+        if (size == 0) {
+            return dt;
+        }
+
         for (size_t i = 0; i < size; ++i) {
             // beware
-            msgs ~= (*table) [i];
+            msgs ~= table [i];
         }
-        free (*table);
+        free (table);
 
-        return size;
+        return dt;
     }
 }
 

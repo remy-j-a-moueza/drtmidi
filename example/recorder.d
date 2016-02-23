@@ -22,7 +22,8 @@ private {
 
 /* Shows the midi ports available. */
 void showPorts () {
-    // Note: this may raise an exception - we'll get a stack trace on the command line.
+    // Note: this may raise an exception 
+    // - we'll get a stack trace on the command line.
     auto midiIn  = new RtMidiIn; 
     auto midiOut = new RtMidiOut;
     
@@ -30,14 +31,16 @@ void showPorts () {
     cout << endl << nPorts << " midi input sources available" << endl;
     
     foreach (np; 0..nPorts) {
-        cout << "Input port #" << np << " " << midiIn.getPortName (np) << endl;
+        cout << "Input port #" << np << " " 
+             << midiIn.getPortName (np) << endl;
     }
 
     nPorts = midiOut.getPortCount;
     cout << endl << nPorts << " midi output sources available" << endl;
 
     foreach (np; 0..nPorts) {
-        cout << "Output port #" << np << " " << midiOut.getPortName (np) << endl;
+        cout << "Output port #" << np << " " 
+             << midiOut.getPortName (np) << endl;
     }
 }
 
@@ -71,8 +74,10 @@ void main () {
 
     /* Represents a note played at a given time. */
     struct Note {
-        double dt;    // Timestamp. time, in seconds,  ellapsed since the last played note.
-        ubyte [] msg; // midi message.
+        // Timestamp. time, in seconds,  ellapsed since the last played note.
+        double dt;    
+        // midi message.
+        ubyte [] msg; 
     }
     Note [] notes; 
 
@@ -88,16 +93,20 @@ void main () {
             while (! halt) {
                 // Get the midi message.
                 ubyte [] msgs; 
-                double dt = midiIn.getMessage (msgs); // May throw an RtError exception. 
+                // May throw an RtError exception.
+                double dt = midiIn.getMessage (msgs);  
                 
                 while (msgs.length) {
                     /* "Batch" processing. */
-                    if (msgs != [250] && msgs != [252]) // Ignore SystemRealtime 'Continue' | 'Stop'.
+                    if (msgs != [250] && msgs != [252]) 
+                        // Ignore SystemRealtime 'Continue' | 'Stop'.
                         notes ~=  Note (dt, msgs);
 
-                    cout << (count ++) << ": Δt: %f, msgs: %s\n".format (dt, msgs);
+                    cout << (count ++) 
+                         << ": Δt: %f, msgs: %s\n".format (dt, msgs);
 
-                    // Clear the array, otherwise new message will be added to its end.
+                    // Clear the array, otherwise new message will be added to
+                    // its end.
                     msgs.length = 0;
                     dt = midiIn.getMessage (msgs);
                 }
@@ -126,9 +135,14 @@ void main () {
        If other keys are pressed before "Enter", it will stop the program. */
     for (;;) {
         foreach (count, note; notes) {
-            /* Get the timestamp and try to round it appropriately in nanoseconds for optimal precision. */
+            /* Get the timestamp and try to round it appropriately in
+             * nanoseconds for optimal precision. */
             auto dt = ((note.dt * 10.pow (6)).rint * 10.pow (3)).to!long;
-            cout << count << ": Δt: %.6f".format (note.dt) << " -> %12d".format (dt) << " nsecs " << note.msg << endl ;
+            cout << count 
+                 << ": Δt: %.6f".format (note.dt) 
+                 << " -> %12d".format (dt) << " nsecs " 
+                 << note.msg 
+                 << endl ;
             
             /* First sleep the amount given by dt, then play the note. 
                Otherwise, it won't sound well in time. */
@@ -138,7 +152,8 @@ void main () {
 
         cout << endl.repeat (2);
         
-        /* Stop if the user has type something (space bar) before pressing "Enter". */
+        /* Stop if the user has type something (space bar) before pressing
+         * "Enter". */
         if (readln ().length > 1) break; 
     }
 }

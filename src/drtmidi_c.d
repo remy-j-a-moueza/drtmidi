@@ -61,7 +61,7 @@ RtMidiApi rtmidi_in_get_current_api (RtMidiPtr device);
 void rtmidi_in_set_callback (RtMidiInPtr device, RtMidiCCallback callback, void* userData);
 void rtmidi_in_cancel_callback (RtMidiInPtr device);
 void rtmidi_in_ignore_types (RtMidiInPtr device, bool midiSysex, bool midiTime, bool midiSense);
-double rtmidi_in_get_message (RtMidiInPtr device, ubyte** message);
+double rtmidi_in_get_message (RtMidiInPtr device, ubyte** message, size_t * size);
 
 /* RtMidiOut API */
 RtMidiOutPtr rtmidi_out_create_default ();
